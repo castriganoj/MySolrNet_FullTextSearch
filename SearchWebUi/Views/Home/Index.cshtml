@@ -1,0 +1,142 @@
+﻿@model SearchLibrary.Models.Query.QueryResponse
+
+
+@*search area*@
+
+<div class="container">
+    <div class="row searchRow">
+        <div class="col-md-12">
+            @using (Html.BeginForm("index", "home", FormMethod.Get, new { @class = "" }))
+            {
+                <div class="input-group stylish-input-group">
+                    @Html.TextBox("query", "commercial", new { @class = "form-control" })
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<br />
+<div class="row">
+    <div class="col-md-12 col-md-offset-1">
+        <ul id="searchStats" class="list-inline">
+            <li>Search Query: <em>@Model.QueryText.QueryText</em></li>
+            <li>Query Time: <em>@Model.QueryTime</em></li>
+            <li>Result Count: <em>@Model.TotalHits</em></li>
+        </ul>
+    </div>
+</div>
+<hr id="headerBar" />
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div id="productTypeFacet">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Product Type</h3>
+                    </div>
+                    <div class="panel-body">
+                        @foreach (var productType in Model.ProductTypeFacet)
+                        {
+                            <div class="Fieldset">
+                                @Html.RadioButtonFor(m => m.ProductTypeFacet, productType.Key)
+                                @Html.LabelFor(m => m.ProductTypeFacet, productType.Key)
+                                <span>(@productType.Value)</span>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="statusFacet">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Status</h3>
+                    </div>
+                    <div class="panel-body">
+                        @foreach (var statusType in Model.StatusTypeFacet)
+                        {
+                            <div class="Fieldset">
+                                @Html.RadioButtonFor(m => m.StatusTypeFacet, statusType.Key)
+                                @Html.LabelFor(m => m.StatusTypeFacet, statusType.Key)
+                                <span>(@statusType.Value)</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="dateFacet">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dates</h3>
+                    </div>
+                    <div class="panel-body">
+                        @if (Model.DateCreatedFacet != null)
+                        {
+                            foreach (var dateCreated in Model.DateCreatedFacet)
+                            {
+                                <div class="Fieldset">
+                                    @Html.RadioButtonFor(m => m.DateCreatedFacet, dateCreated.Key)
+                                    @Html.LabelFor(m => m.DateCreatedFacet, dateCreated.Key)
+                                    <span>(@dateCreated.Value)</span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="orgLocationFacet">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Org Path</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        @foreach (var orgLocation in Model.OrgLocationFacet)
+                        {
+                            <div class="Fieldset">
+                                @Html.RadioButtonFor(m => m.OrgLocationFacet, orgLocation.Key)
+                                @Html.LabelFor(m => m.OrgLocationFacet, orgLocation.Key)
+                                <span>(@orgLocation.Value)</span>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model != null)
+                    {
+                        @Html.Partial("_search", Model.Results)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/"></script>
+}
+
+

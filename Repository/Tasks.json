@@ -1,0 +1,83 @@
+﻿[
+    {
+        "Id": "1",
+        "Name": "ACME - Morgantown, PA - Water Quality Permit Audit",
+        "Questions": [
+            "For storm water discharges associated with industrial activities other than construction, is the facility's discharge described by one of the following scenarios:",
+            "Facilities discharging to private treatment works should review the questions in the detailed audit checklist for this topic.",
+            "Does the facility notify the POTW/Control Authority of the following:",
+            "For Non-Categorical Significant Industrial Users, does the facility comply with the following requirements"
+        ],
+        "Description": "Audit for the water quailty at this site",
+        "Answers": [
+            "Submission of electronic documents to an appropriate EPA document receiving system",
+            "generally EPA's Central Data Exchange (CDX), A valid electronic signature (as described in the final rule) of the person authorized to sign each electronic document where a document must bear a signature under EPA's regulations.",
+            "Action Required",
+            "okay",
+            "Yes",
+            "The storm water discharge is covered by an individual storm water discharge permit",
+            "No"
+        ],
+        "Domains": [ "Water Quality" ],
+        "SubDomains": [ "Overview", "Pretreatment", "NPDES", "Storm Water", "UIC" ],
+        "Applicable": true,
+        "CreateDate": "2014-02-01T00:00:00",
+        "Status": "Complete"
+    },
+    {
+        "Id": "2",
+        "Name": "Environmental Health and Safety Audit",
+        "Questions": [
+            "Does the facility drill for, produce, gather, store, process, refine, transfer, distribute, use, or consume oil and oil products?",
+            "Does the facility employ 100 or more employees in ANY of the following areas:",
+            "Do you emit any of the following hazardous air pollutants regulated by the pre-1990 NESHAPs requirements",
+            "Does the facility sell or distribute, or offer to sell or distribute any products that release a chlorofluorocarbon (CFC) or a hydrochlorofluorocarbon (HCFC) substance?"
+        ],
+        "Description": "Audit for the safety and the site",
+        "Answers": [
+            "Radon",
+            "The plug being under the exclusive control of the employee performing the servicing or maintenance?"
+            "Mercury",
+            "Action Required",
+            "okay",
+            "Yes",
+            "Suspended scaffolds (swinging scaffolds) used to service buildings on a temporary basis",
+            "No"
+        ],
+        "Domains": [ "Water Quality", "Air Quality", "Solid and Hazardous Waste", "Spill prevention", "Worker Safety" ],
+        "SubDomains": [ "Overview", "Inventory", "Overview", "NPDES", "Storm Water", "UIC", "Scope", "Discharge Limitations", "Sampeling and Monitoring", "Specific Conditions", "Drinking Water", "Job Hazard Analysis" ],
+        "Applicable": true,
+        "CreateDate": "2011-02-01T00:00:00",
+        "Status": "In Progress"
+    },
+    {
+        "Id": "3",
+        "Name": "Commercial Coatings Division",
+        "Questions": [
+            "To assist in determining compliance, it may be useful to gather the materials listed in the Materials to be Gathered List.",
+            "Are ALL of the following statements true for the facility",
+            "On October 13, 2005 (70 FR 59848), EPA established electronic reporting as an acceptable alternative to paper-based document submissions across a broad spectrum of EPA programs.",
+            "Is the facility in compliance with the requirements for each of the following, as applicable:"
+        ],
+        "Description": "Audit of the Commercial Coatings Division",
+        "Answers": [
+            "Container Management",
+            "The plug being under the exclusive control of the employee performing the servicing or maintenance?",
+            "Tank Managemenet",
+            "Have a written post-closure plan",
+            "follow applicable requirements for the delay of closure",
+            "okay",
+            "Yes",
+            "Comply with transboundary movement regulations when exporting to an OECD country",
+            "No",
+            "Yes"
+        ],
+        "Domains": [ "Solid and Hazardous Waste" ],
+        "SubDomains": [ "Overview", "Small Quantity Generators", "Interim Status TSDFs","RCRA Standardizied Permits", "HW Transporters","Universal Waster", "Radioactive Waste" ],
+        "Applicable": true,
+        "CreateDate": "2015-08-01T00:00:00",
+        "Status": "Complete"
+    }
+
+]
+

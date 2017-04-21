@@ -1,0 +1,83 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.searchRow{
+    margin-top:15px;
+}
+
+#imaginary_container{
+    margin-top:20%; /* Don't copy this */
+}
+
+.stylish-input-group{
+    padding-top: 1%;
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+    max-width:none;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.form-control{
+    height:inherit;
+    font-size:24px;
+}
+
+.list-inline > li{
+    padding-left:10%;
+}
+.groupContainer {
+    max-height: 38vh;
+    overflow: hidden;
+}
+
+  .searchBox {
+            margin: 27px 0 0 35px;
+        }
+
+        #headerBar {
+            background-color: green;
+            height: 3px;
+        }
+
+        .faded {
+            opacity: 0.5;
+        }
+
+        .fadest {
+            opacity: .3;
+        }
+
+        #Icons .glyphicon:before {
+            padding-right: 10%;
+        }

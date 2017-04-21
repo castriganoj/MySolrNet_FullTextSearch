@@ -1,0 +1,11 @@
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\ProactivitySearchPrototypeOne.exe.config
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\ProactivitySearchPrototypeOne.exe
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\ProactivitySearchPrototypeOne.pdb
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\SolrNet.dll
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\SolrNet.pdb
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\bin\Debug\SolrNet.xml
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\obj\Debug\ProactivitySearchPrototypeOne.exe
+C:\Users\jcastrigano\Documents\Visual Studio 2013\Projects\ProactivitySearchPrototypeOne\ProactivitySearchPrototypeOne\obj\Debug\ProactivitySearchPrototypeOne.pdb

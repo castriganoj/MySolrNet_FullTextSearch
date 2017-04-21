@@ -1,0 +1,4 @@
+﻿//listen
+$(".searchResultCell").click(function () {
+
+})

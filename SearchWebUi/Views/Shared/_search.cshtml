@@ -1,0 +1,50 @@
+﻿@model List<SearchLibrary.Models.EHS.EHSDoc>
+
+    @foreach (var searchResult in Model)
+    {
+                    <div class="row">
+                        <div class="col-md-11 searchResultCell">
+                            <div id="CreatedDate" class="row faded">
+                                <div class="col-md-12">
+                                    @searchResult.CreateDate
+                                </div>
+                            </div>
+
+                            <div id="DataFound" class="row">
+                                <div class="col-md-12">
+                                    @foreach (var item in @searchResult.ValueAnswers)
+                                    {
+                                        @item
+                                    }
+                                </div>
+                            </div>
+
+                            <div id="Icons" class="row faded">
+                                <div id="type" class="col-md-4">
+                                    <span class="glyphicon glyphicon-tag"></span>
+                                    @searchResult.FormType
+                                </div>
+                                <div id="lastModified" class="col-md-4">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    @searchResult.EditDate
+                                </div>
+                                <div id="user" class="col-md-4">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    @searchResult.Creator
+                                </div>
+                            </div>
+
+                            <div id="MoreData" class="row" style="display:none;">
+                                <div class="col-md-4">
+                                    <p>@searchResult.Description</p>
+                                    <p>@searchResult.Domain</p>
+                                    <p>@searchResult.Status</p>
+                                    <p>@searchResult.Name</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr />
+            }
+
