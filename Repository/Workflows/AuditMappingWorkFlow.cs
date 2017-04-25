@@ -57,7 +57,7 @@ namespace Indexer
                     Name = audit.SingleOrDefault(colHead => colHead.Key == "sFileName").Value,
                     CreateDate = createDate,
                     Description = audit.SingleOrDefault(colHead => colHead.Key == "sDescription").Value,
-                    Status = audit.SingleOrDefault(coldHead => coldHead.Key == "IStatusID").Value,
+                    Status = audit.SingleOrDefault(coldHead => coldHead.Key == "sName").Value,
                     OrgLocation = audit.SingleOrDefault(colHead => colHead.Key == "sOrgPath").Value,
                     ValueAnswers = audit.Values.ToList()
                 };

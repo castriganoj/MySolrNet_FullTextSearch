@@ -18,10 +18,10 @@ namespace Indexer.Repository
             using (SqlConnection cn = new SqlConnection(Settings.ConnectionString))
             {
                 string sql =
-                    @"SELECT sLastName, af.*
+                    @"SELECT sLastName, sName, af.*
                       FROM auditor.AuditFile af
-                      INNER JOIN auditor.People p
-                      ON af.IAuditorID = p.IPersonID";
+                      INNER JOIN auditor.People p ON af.IAuditorID = p.IPersonID
+                      INNER JOIN auditor.Status as s ON s.IStatusID = af.IStatusID";
 
                 var smartForms = cn.Query(sql);
 

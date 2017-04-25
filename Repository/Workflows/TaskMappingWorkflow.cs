@@ -64,6 +64,7 @@ namespace Indexer.Workflows
                     OrgLocation = task.SingleOrDefault(colHead => colHead.Key == "sOrgPath").Value,
                     CreateDate = createDate,
                     Creator = task.SingleOrDefault(colHead => colHead.Key == "sResponsiblePerson").Value,
+                    Status = task.SingleOrDefault(colHead => colHead.Key == "sName").Value,
                     ValueAnswers = task.Values.ToList()
                 };
 

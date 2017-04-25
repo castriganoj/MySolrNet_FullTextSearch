@@ -17,10 +17,10 @@ namespace SearchLibrary.SolrUtilities
             {
                 Queries = new List<ISolrFacetQuery>
                 {
-                     new SolrFacetFieldQuery("productType"){MinCount = 1},
-                     new SolrFacetFieldQuery("status") {MinCount = 1 },
-                     new SolrFacetFieldQuery("orgLocation") {MinCount = 2},
-                     new SolrFacetFieldQuery("createDate") {MinCount = 2 }
+                     new SolrFacetFieldQuery("productType"){Limit=5},
+                     new SolrFacetFieldQuery("status") {Limit=5},
+                     new SolrFacetFieldQuery("orgLocation") { Limit=5},
+                     new SolrFacetDateQuery("createDate",DateTime.Now.AddYears(-10),DateTime.Now,"+1MONTH") 
                 }
             };
         }
