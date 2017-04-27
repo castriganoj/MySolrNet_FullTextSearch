@@ -5,14 +5,15 @@ using System.Web;
 
 namespace SearchLibrary.Models.Query
 {
-    public class Query
+    public class EhsQuery
     {
-        public Query()
+        public EhsQuery()
         {
             Rows = 20;
             Start = 0;
             ProductTypeFilter = new List<string>();
         }
+
         public string QueryText { get; set; }
 
         public int Start { get; set; }

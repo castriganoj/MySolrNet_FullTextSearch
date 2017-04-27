@@ -25,7 +25,7 @@ namespace SearchLibrary.Models.Query
 
         public int Status { get; set; }
 
-        public Query QueryText { get; set; }
+        public EhsQuery QueryText { get; set; }
 
         public List<KeyValuePair<string, int>> ProductTypeFacet { get; set; }
 

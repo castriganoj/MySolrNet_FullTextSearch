@@ -23,7 +23,7 @@ namespace SearchWebUi.Controllers
 
             var searchService = new EHSSearch();
 
-            Query testQuery = new Query();
+            EhsQuery testQuery = new EhsQuery();
             testQuery.QueryText = query;
 
             QueryResponse result = searchService.DoSearch(testQuery);

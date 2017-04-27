@@ -1,4 +1,4 @@
-﻿@model SearchLibrary.Models.Query.QueryResponse
+﻿@model SearchWebUi.Models.SearchVM
 
 
 @*search area*@
@@ -9,13 +9,21 @@
             @using (Html.BeginForm("index", "home", FormMethod.Get, new { @class = "" }))
             {
                 <div class="input-group stylish-input-group">
-                    @Html.TextBox("query", "commercial", new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.EhsQuery.QueryText, new { @class = "form-control" })
+                   
                     <span class="input-group-addon">
                         <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
                 </div>
+
+                for (int i = 0; i < Model.filters.Count(); i++)
+                {
+                    @Html.CheckBoxFor(m => m.filters[i].Selected)
+                    @Html.HiddenFor(m => m.filters[i].FilterName)
+                    @Html.Label(Model.filters[i].FilterName)
+                }
 
             }
         </div>
@@ -27,15 +35,14 @@
 <div class="row">
     <div class="col-md-12 col-md-offset-1">
         <ul id="searchStats" class="list-inline">
-            <li>Search Query: <em>@Model.QueryText.QueryText</em></li>
-            <li>Query Time: <em>@Model.QueryTime</em></li>
-            <li>Result Count: <em>@Model.TotalHits</em></li>
+            <li>Search Query: <em>@Model.QueryResponse.QueryText.QueryText</em></li>
+            <li>Query Time: <em>@Model.QueryResponse.QueryTime</em><small> ms</small></li>
+            <li>Result Count: <em>@Model.QueryResponse.TotalHits</em></li>
         </ul>
     </div>
 </div>
+
 <hr id="headerBar" />
-
-
 
 <div class="container">
     <div class="row">
@@ -47,14 +54,16 @@
                         <h3 class="panel-title">Product Type</h3>
                     </div>
                     <div class="panel-body">
-                        @foreach (var productType in Model.ProductTypeFacet)
+                        @foreach (var productType in Model.QueryResponse.ProductTypeFacet)
                         {
                             <div class="Fieldset">
-                                @Html.RadioButtonFor(m => m.ProductTypeFacet, productType.Key)
-                                @Html.LabelFor(m => m.ProductTypeFacet, productType.Key)
+                               @* @Html.RadioButtonFor(m => m.QueryResponse.ProductTypeFacet, productType.Key)*@
+                                @Html.LabelFor(m => m.QueryResponse.ProductTypeFacet, productType.Key)
                                 <span>(@productType.Value)</span>
                             </div>
                         }
+
+                    
 
                     </div>
                 </div>
@@ -66,17 +75,17 @@
                         <h3 class="panel-title">Status</h3>
                     </div>
                     <div class="panel-body">
-                        @foreach (var statusType in Model.StatusTypeFacet)
+                        @foreach (var statusType in Model.QueryResponse.StatusTypeFacet)
                         {
                             <div class="Fieldset">
-                                @Html.RadioButtonFor(m => m.StatusTypeFacet, statusType.Key)
-                                @Html.LabelFor(m => m.StatusTypeFacet, statusType.Key)
+                                @Html.RadioButtonFor(m => m.QueryResponse.StatusTypeFacet, statusType.Key)
+                                @Html.LabelFor(m => m.QueryResponse.StatusTypeFacet, statusType.Key)
                                 <span>(@statusType.Value)</span>
                             </div>
                         }
                     </div>
                 </div>
-            </div>
+            </div>  
 
             <div id="dateFacet">
                 <div class="panel panel-default">
@@ -84,13 +93,13 @@
                         <h3 class="panel-title">Dates</h3>
                     </div>
                     <div class="panel-body">
-                        @if (Model.DateCreatedFacet != null)
+                        @if (Model.QueryResponse.DateCreatedFacet != null)
                         {
-                            foreach (var dateCreated in Model.DateCreatedFacet)
+                            foreach (var dateCreated in Model.QueryResponse.DateCreatedFacet)
                             {
                                 <div class="Fieldset">
-                                    @Html.RadioButtonFor(m => m.DateCreatedFacet, dateCreated.Key)
-                                    @Html.LabelFor(m => m.DateCreatedFacet, dateCreated.Key)
+                                    @Html.RadioButtonFor(m => m.QueryResponse.DateCreatedFacet, dateCreated.Key)
+                                    @Html.LabelFor(m => m.QueryResponse.DateCreatedFacet, dateCreated.Key)
                                     <span>(@dateCreated.Value)</span>
                                 </div>
                             }
@@ -106,11 +115,11 @@
                     </div>
                     <div class="panel-body">
 
-                        @foreach (var orgLocation in Model.OrgLocationFacet)
+                        @foreach (var orgLocation in Model.QueryResponse.OrgLocationFacet)
                         {
                             <div class="Fieldset">
-                                @Html.RadioButtonFor(m => m.OrgLocationFacet, orgLocation.Key)
-                                @Html.LabelFor(m => m.OrgLocationFacet, orgLocation.Key)
+                                @Html.RadioButtonFor(m => m.QueryResponse.OrgLocationFacet, orgLocation.Key)
+                                @Html.LabelFor(m => m.QueryResponse.OrgLocationFacet, orgLocation.Key)
                                 <span>(@orgLocation.Value)</span>
                             </div>
                         }
@@ -126,7 +135,7 @@
                 <div class="col-md-12">
                     @if (Model != null)
                     {
-                        @Html.Partial("_search", Model.Results)
+                        @Html.Partial("_search", Model.QueryResponse.Results)
                     }
                 </div>
             </div>

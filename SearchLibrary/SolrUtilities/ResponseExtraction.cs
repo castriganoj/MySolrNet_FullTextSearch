@@ -46,9 +46,11 @@ namespace SearchLibrary.SolrUtilities
             }
 
             //createDate
-            if (solrResults.FacetFields.ContainsKey("createDate"))
+            if (solrResults.FacetDates.ContainsKey("createDate"))
             {
-                queryResponse.DateCreatedFacet = solrResults.FacetFields["createDate"].Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value)).ToList();
+                queryResponse.DateCreatedFacet = solrResults.FacetDates["createDate"].DateResults
+                    .Select(facet => new KeyValuePair<string, int>(facet.Key.Year.ToString(), facet.Value))
+                    .ToList();
             }
 
         }

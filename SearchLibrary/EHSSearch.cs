@@ -23,7 +23,7 @@ namespace SearchLibrary
             //connection = new Connection("http://localhost:8983/solr/EHS");
         }
 
-        public QueryResponse DoSearch(Query query)
+        public QueryResponse DoSearch(EhsQuery query)
         {
             FiltersFacets filtersFacets = new FiltersFacets();
 
@@ -43,7 +43,8 @@ namespace SearchLibrary
             QueryOptions queryOptions = new QueryOptions
             {
                 Rows = query.Rows,
-                Facet = filtersFacets.BuildFacets()
+                Facet = filtersFacets.BuildFacets(), 
+                FilterQueries = filtersFacets.BuildFilterQueries(query)
             };
 
             //Execute the query
