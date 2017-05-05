@@ -12,6 +12,11 @@ namespace SearchLibrary.SolrUtilities
 {
     internal class ResponseExtraction
     {
+        internal QueryResponse ExtractResponse(SolrQueryResults<EHSDoc> solrResults)
+        {
+
+            throw new NotImplementedException();
+        }
         //Extract parts of the SolrNet response and set them in QueryResponse class
         internal void SetHeader(QueryResponse queryResponse, SolrQueryResults<EHSDoc> solrResults)
         {
@@ -30,19 +35,25 @@ namespace SearchLibrary.SolrUtilities
             //ProductTypes
             if (solrResults.FacetFields.ContainsKey("productType"))
             {
-                queryResponse.ProductTypeFacet = solrResults.FacetFields["productType"].Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value)).ToList();
+                queryResponse.ProductTypeFacet = solrResults.FacetFields["productType"]
+                    .Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value))
+                    .ToList();
             }
 
             //StatusTypes
             if (solrResults.FacetFields.ContainsKey("status"))
             {
-                queryResponse.StatusTypeFacet = solrResults.FacetFields["status"].Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value)).ToList();
+                queryResponse.StatusTypeFacet = solrResults.FacetFields["status"]
+                    .Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value))
+                    .ToList();
             }
 
             //orlLocation
             if (solrResults.FacetFields.ContainsKey("orgLocation"))
             {
-                queryResponse.OrgLocationFacet = solrResults.FacetFields["orgLocation"].Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value)).ToList();
+                queryResponse.OrgLocationFacet = solrResults.FacetFields["orgLocation"]
+                    .Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value))
+                    .ToList();
             }
 
             //createDate

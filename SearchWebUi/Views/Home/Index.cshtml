@@ -1,146 +1,156 @@
 ﻿@model SearchWebUi.Models.SearchVM
+@using SearchWebUi.Models
 
 
 @*search area*@
 
 <div class="container">
-    <div class="row searchRow">
-        <div class="col-md-12">
-            @using (Html.BeginForm("index", "home", FormMethod.Get, new { @class = "" }))
-            {
+    @using (Html.BeginForm("index", "home", FormMethod.Get, new { @class = "" }))
+    {
+        <div class="row searchRow">
+            <div class="col-md-12">
+
                 <div class="input-group stylish-input-group">
                     @Html.TextBoxFor(m => m.EhsQuery.QueryText, new { @class = "form-control" })
-                   
+
                     <span class="input-group-addon">
                         <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
                 </div>
-
-                for (int i = 0; i < Model.filters.Count(); i++)
-                {
-                    @Html.CheckBoxFor(m => m.filters[i].Selected)
-                    @Html.HiddenFor(m => m.filters[i].FilterName)
-                    @Html.Label(Model.filters[i].FilterName)
-                }
-
-            }
-        </div>
-    </div>
-</div>
-
-
-<br />
-<div class="row">
-    <div class="col-md-12 col-md-offset-1">
-        <ul id="searchStats" class="list-inline">
-            <li>Search Query: <em>@Model.QueryResponse.QueryText.QueryText</em></li>
-            <li>Query Time: <em>@Model.QueryResponse.QueryTime</em><small> ms</small></li>
-            <li>Result Count: <em>@Model.QueryResponse.TotalHits</em></li>
-        </ul>
-    </div>
-</div>
-
-<hr id="headerBar" />
-
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-4">
-            <div id="productTypeFacet">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Product Type</h3>
-                    </div>
-                    <div class="panel-body">
-                        @foreach (var productType in Model.QueryResponse.ProductTypeFacet)
-                        {
-                            <div class="Fieldset">
-                               @* @Html.RadioButtonFor(m => m.QueryResponse.ProductTypeFacet, productType.Key)*@
-                                @Html.LabelFor(m => m.QueryResponse.ProductTypeFacet, productType.Key)
-                                <span>(@productType.Value)</span>
-                            </div>
-                        }
-
-                    
-
-                    </div>
-                </div>
             </div>
+        </div>
 
-            <div id="statusFacet">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Status</h3>
-                    </div>
-                    <div class="panel-body">
-                        @foreach (var statusType in Model.QueryResponse.StatusTypeFacet)
-                        {
-                            <div class="Fieldset">
-                                @Html.RadioButtonFor(m => m.QueryResponse.StatusTypeFacet, statusType.Key)
-                                @Html.LabelFor(m => m.QueryResponse.StatusTypeFacet, statusType.Key)
-                                <span>(@statusType.Value)</span>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>  
 
-            <div id="dateFacet">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Dates</h3>
-                    </div>
-                    <div class="panel-body">
-                        @if (Model.QueryResponse.DateCreatedFacet != null)
-                        {
-                            foreach (var dateCreated in Model.QueryResponse.DateCreatedFacet)
+
+        <br />
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <ul id="searchStats" class="list-inline">
+                    <li>Search Query: <em>@Model.QueryResponse.QueryText.QueryText</em></li>
+                    <li>Query Time: <em>@Model.QueryResponse.QueryTime</em><small> ms</small></li>
+                    <li>Result Count: <em>@Model.QueryResponse.TotalHits</em></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <hr id="headerBar" />
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div id="productTypeFacet">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Product Type</h3>
+                        </div>
+                        <div class="panel-body">
+                            @for (int i = 0; i < Model.filters.Count(); i++)
                             {
-                                <div class="Fieldset">
-                                    @Html.RadioButtonFor(m => m.QueryResponse.DateCreatedFacet, dateCreated.Key)
-                                    @Html.LabelFor(m => m.QueryResponse.DateCreatedFacet, dateCreated.Key)
-                                    <span>(@dateCreated.Value)</span>
-                                </div>
+                                if (@Model.filters[i].Type == FilterType.Product)
+                                {
+                                    <div class="Fieldset">
+                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
+                                        @Html.HiddenFor(m => m.filters[i].FilterName)
+                                        @Html.HiddenFor(m => m.filters[i].Type)
+                                        @Html.DisplayTextFor(m => m.filters[i].FilterName)
+                                        <span>(@Model.QueryResponse.ProductTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                    </div>
+                                }
                             }
-                        }
+                        </div>
                     </div>
                 </div>
+
+                <div id="statusFacet">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Status</h3>
+                        </div>
+                        <div class="panel-body">
+                            @for (int i = 0; i < Model.filters.Count(); i++)
+                            {
+                                if (Model.filters[i].Type == FilterType.Status)
+                                {
+                                    <div class="Fieldset">
+                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
+                                        @Html.HiddenFor(m => m.filters[i].FilterName)
+                                        @Html.HiddenFor(m => m.filters[i].Type)
+                                        @Html.Label(Model.filters[i].FilterName)
+                                        <span>(@Model.QueryResponse.StatusTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                @*<div id="dateFacet">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Dates</h3>
+                        </div>
+                        <div class="panel-body">
+                            @for (int i = 0; i < Model.filters.Count(); i++)
+                            {
+                                if (Model.filters[i].Type == FilterType.Date)
+                                {
+                                    <div class="Fieldset">
+                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
+                                        @Html.HiddenFor(m => m.filters[i].FilterName)
+                                        @Html.HiddenFor(m => m.filters[i].Type)
+                                        @Html.Label(Model.filters[i].FilterName)
+                                        <span>(@Model.QueryResponse.DateCreatedFacet.SingleOrDefault(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>*@
+
+                <div id="orgLocationFacet">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Org Path</h3>
+                        </div>
+                        <div class="panel-body">
+                            @for (int i = 0; i < Model.filters.Count(); i++)
+                            {
+                                if (Model.filters[i].Type == FilterType.OrgLocation)
+                                {
+                                    <div class="Fieldset">
+                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
+                                        @Html.HiddenFor(m => m.filters[i].FilterName)
+                                        @Html.HiddenFor(m => m.filters[i].Type)
+                                        @Html.Label(Model.filters[i].FilterName)
+                                        <span>(@Model.QueryResponse.OrgLocationFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div id="orgLocationFacet">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Org Path</h3>
-                    </div>
-                    <div class="panel-body">
 
-                        @foreach (var orgLocation in Model.QueryResponse.OrgLocationFacet)
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (Model != null)
                         {
-                            <div class="Fieldset">
-                                @Html.RadioButtonFor(m => m.QueryResponse.OrgLocationFacet, orgLocation.Key)
-                                @Html.LabelFor(m => m.QueryResponse.OrgLocationFacet, orgLocation.Key)
-                                <span>(@orgLocation.Value)</span>
-                            </div>
+                            @Html.Partial("_search", Model.QueryResponse.Results)
                         }
-
-
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-12">
-                    @if (Model != null)
-                    {
-                        @Html.Partial("_search", Model.QueryResponse.Results)
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 
 </div>
 @section Scripts

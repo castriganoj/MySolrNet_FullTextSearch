@@ -17,19 +17,44 @@ namespace SearchLibrary.SolrUtilities
             ICollection<ISolrQuery> filters = new List<ISolrQuery>();
 
             List<SolrQueryByField> refinersProductType = new List<SolrQueryByField>();
-            //List<SolrQueryByField> refinersStatus = new List<SolrQueryByField>();
+            List<SolrQueryByField> refinersStatus = new List<SolrQueryByField>();
+            List<SolrQueryByField> refinersOrgLocation = new List<SolrQueryByField>();
+            List<SolrQueryByField> refinersCreateDate = new List<SolrQueryByField>();
 
             //ie filter for auditor and tracer
             foreach (string productType in query.ProductTypeFilter)
             {
                 refinersProductType.Add(new SolrQueryByField("productType", productType));
             }
-   
+
+            foreach (string orgLocation in query.OrgLocationFilter)
+            {
+                refinersOrgLocation.Add(new SolrQueryByField("orgLocation", orgLocation));
+            }
+
+            foreach (string statusFilter in query.StatusFilter)
+            {
+                refinersStatus.Add(new SolrQueryByField("status", statusFilter));
+            }
+
 
             if (refinersProductType.Count > 0)
             {
-                filters.Add(new SolrMultipleCriteriaQuery(refinersProductType, "OR")); //AND
+                filters.Add(new SolrMultipleCriteriaQuery(refinersProductType, "OR")); //OR
             }
+
+
+            if (refinersOrgLocation.Count > 0)
+            {
+                filters.Add(new SolrMultipleCriteriaQuery(refinersOrgLocation, "OR")); //OR
+            }
+
+
+            if (refinersStatus.Count > 0)
+            {
+                filters.Add(new SolrMultipleCriteriaQuery(refinersStatus, "OR")); //OR
+            }
+
 
 
             return filters;

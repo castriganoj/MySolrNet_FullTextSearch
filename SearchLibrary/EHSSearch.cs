@@ -40,6 +40,7 @@ namespace SearchLibrary
             //on SolrOperations field. 
             bool initialized = Connection.Initialized;
             ISolrOperations<EHSDoc> solr = Connection.SolrOperations;
+            
             QueryOptions queryOptions = new QueryOptions
             {
                 Rows = query.Rows,
@@ -50,7 +51,6 @@ namespace SearchLibrary
             //Execute the query
             ISolrQuery solrQuery = new SolrQuery(query.QueryText);
 
-            //solrResults = solr.Query(solrQuery, queryOptions);
             solrResults = solr.Query(solrQuery, queryOptions);
 
            //Set response
