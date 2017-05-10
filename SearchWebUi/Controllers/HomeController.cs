@@ -47,6 +47,11 @@ namespace SearchWebUi.Controllers
             return View(searchVM);
         }
 
+        public ActionResult SearchPreview()
+        {
+            return View();
+        }
+
         private List<FilterCheckBox> BuildFilterCheckBoxes(QueryResponse result, List<FilterCheckBox> filters)
         {
             var filterCheckBoxes = new List<FilterCheckBox>();
@@ -60,11 +65,11 @@ namespace SearchWebUi.Controllers
                 filterCheckBoxes.Add(checkBox);
             }
 
-            foreach (var orgFacet in result.ProductTypeFacet)
+            foreach (var orgFacet in result.DocumentTypeFacet)
             {
                 var checkBox = new FilterCheckBox();
                 checkBox.FilterName = orgFacet.Key;
-                checkBox.Type = FilterType.Product;
+                checkBox.Type = FilterType.Document;
                 filterCheckBoxes.Add(checkBox);
 
             }
@@ -95,10 +100,9 @@ namespace SearchWebUi.Controllers
             {
                 if (filter.Selected == true)
                 {
-                    //cool visual studio auto implements for switch statement
                     switch (filter.Type)
                     {
-                        case FilterType.Product:
+                        case FilterType.Document:
                             ehsQuery.ProductTypeFilter.Add(filter.FilterName);
                             break;
 
@@ -109,11 +113,10 @@ namespace SearchWebUi.Controllers
                         case FilterType.Status:
                             ehsQuery.StatusFilter.Add(filter.FilterName);
                             break;
-
-                        //case FilterType.Date:
-                        //    //need to implement date filering
-                        //    ehsQuery.DateFilter.Add(new DateTime();
-                        //    break;
+                          
+                        case FilterType.Date:
+                            ehsQuery.DateFilter.Add(new DateTime(Int32.Parse(filter.FilterName), 1, 1));
+                            break;
 
                         default:
                             break;

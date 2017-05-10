@@ -38,7 +38,7 @@ namespace SearchWebUi.Controllers
         private Dictionary<string, List<EHSDoc>> GroupByProducts(List<EHSDoc> EhsDocs)
         {
             Dictionary<string, List<EHSDoc>> docs =  EhsDocs
-                .GroupBy(ehsDoc => ehsDoc.ProductType)
+                .GroupBy(ehsDoc => ehsDoc.DocumentType)
                 .ToDictionary(g => g.Key, g => g.ToList());
 
             return docs;

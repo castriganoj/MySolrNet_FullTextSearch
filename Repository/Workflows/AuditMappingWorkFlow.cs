@@ -53,7 +53,7 @@ namespace Indexer
 
                 var solrAudit = new EHSDoc()
                 {
-                    ProductType = "Auditor",
+                    DocumentType = "Auditor",
                     Name = audit.SingleOrDefault(colHead => colHead.Key == "sFileName").Value,
                     CreateDate = createDate,
                     Description = audit.SingleOrDefault(colHead => colHead.Key == "sDescription").Value,

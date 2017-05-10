@@ -42,22 +42,22 @@
 
         <div class="row">
             <div class="col-md-4">
-                <div id="productTypeFacet">
+                <div id="documentTypeFacet">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Product Type</h3>
+                            <h3 class="panel-title">Document Type</h3>
                         </div>
                         <div class="panel-body">
                             @for (int i = 0; i < Model.filters.Count(); i++)
                             {
-                                if (@Model.filters[i].Type == FilterType.Product)
+                                if (@Model.filters[i].Type == FilterType.Document)
                                 {
                                     <div class="Fieldset">
                                         @Html.CheckBoxFor(m => m.filters[i].Selected)
                                         @Html.HiddenFor(m => m.filters[i].FilterName)
                                         @Html.HiddenFor(m => m.filters[i].Type)
                                         @Html.DisplayTextFor(m => m.filters[i].FilterName)
-                                        <span>(@Model.QueryResponse.ProductTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                        <span>(@Model.QueryResponse.DocumentTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
                                     </div>
                                 }
                             }
@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                @*<div id="dateFacet">
+                <div id="dateFacet">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Dates</h3>
@@ -110,7 +110,7 @@
                             }
                         </div>
                     </div>
-                </div>*@
+                </div>
 
                 <div id="orgLocationFacet">
                     <div class="panel panel-default">

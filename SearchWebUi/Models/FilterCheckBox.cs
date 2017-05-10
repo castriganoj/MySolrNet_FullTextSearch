@@ -10,7 +10,7 @@
 
     public enum FilterType
     {
-        Product = 1, 
+        Document = 1, 
         OrgLocation = 2, 
         Status = 3, 
         Date = 4

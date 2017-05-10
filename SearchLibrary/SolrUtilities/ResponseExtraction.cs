@@ -33,9 +33,9 @@ namespace SearchLibrary.SolrUtilities
         internal void SetFacets(QueryResponse queryResponse, SolrQueryResults<EHSDoc> solrResults)
         {
             //ProductTypes
-            if (solrResults.FacetFields.ContainsKey("productType"))
+            if (solrResults.FacetFields.ContainsKey("documentType"))
             {
-                queryResponse.ProductTypeFacet = solrResults.FacetFields["productType"]
+                queryResponse.DocumentTypeFacet = solrResults.FacetFields["documentType"]
                     .Select(facet => new KeyValuePair<string, int>(facet.Key, facet.Value))
                     .ToList();
             }

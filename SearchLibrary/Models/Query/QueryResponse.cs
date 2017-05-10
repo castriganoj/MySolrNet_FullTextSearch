@@ -11,7 +11,7 @@ namespace SearchLibrary.Models.Query
     {
          public QueryResponse()
         {
-            ProductTypeFacet = new List<KeyValuePair<string, int>>();
+            DocumentTypeFacet = new List<KeyValuePair<string, int>>();
             StatusTypeFacet = new List<KeyValuePair<string, int>>();
             OrgLocationFacet = new List<KeyValuePair<string, int>>();
         }
@@ -27,7 +27,7 @@ namespace SearchLibrary.Models.Query
 
         public EhsQuery QueryText { get; set; }
 
-        public List<KeyValuePair<string, int>> ProductTypeFacet { get; set; }
+        public List<KeyValuePair<string, int>> DocumentTypeFacet { get; set; }
 
         public List<KeyValuePair<string, int>> StatusTypeFacet { get; set; }
 

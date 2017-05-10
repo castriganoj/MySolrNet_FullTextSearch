@@ -57,7 +57,7 @@ namespace Indexer.Workflows
 
                 var EHSDoc = new EHSDoc()
                 {
-                    ProductType = "Tracer",
+                    DocumentType = "Tracer",
                     Name = task.SingleOrDefault(colHead => colHead.Key == "ItemName").Value,
                     Description = task.SingleOrDefault(colHead => colHead.Key == "sDescription").Value,
                     Domain = task.SingleOrDefault(colHead => colHead.Key == "sDomainPath").Value,

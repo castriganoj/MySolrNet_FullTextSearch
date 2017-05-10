@@ -13,15 +13,6 @@ namespace SearchLibrary
 {
     public class EHSSearch
     {
-        //private Connection connection;
-
-        public EHSSearch()
-        {
-            //Initialize connection
-            //Connection can be initialized once and then retrieved via ServiceLocator.GetInstance
-            //But we are creating it for every search library instantiation for demo purposes            
-            //connection = new Connection("http://localhost:8983/solr/EHS");
-        }
 
         public QueryResponse DoSearch(EhsQuery query)
         {

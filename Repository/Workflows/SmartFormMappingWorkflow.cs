@@ -60,13 +60,12 @@ namespace Indexer.Workflows
 
                 var smartForm = new EHSDoc()
                 {
-                    ProductType = "Scout",
+                    DocumentType = sf.SingleOrDefault(colHead => colHead.Key == "vData_ReportType").Value,
                     CreateDate = createDate,
                     Creator = sf.SingleOrDefault(colHead => colHead.Key == "vData_RptrLName").Value,
                     FormType = sf.SingleOrDefault(colHead => colHead.Key == "vData_ReportType").Value,
                     OrgLocation = sf.SingleOrDefault(colHead => colHead.Key == "ParentPath").Value,
                     Status = sf.SingleOrDefault(colHead => colHead.Key == "vData_Status").Value,
-                    //remove values added to properties
                     ValueAnswers = sf.Values.ToList(),
                     EditDate = null
 

@@ -9,8 +9,8 @@ namespace SearchLibrary.Models.EHS
 {
     public class EHSDoc
     {
-        [SolrField("productType")]
-        public string ProductType { get; set; }
+        [SolrField("documentType")]
+        public string DocumentType { get; set; }
 
         [SolrField("orgLocation")]
         public string OrgLocation { get; set; }
