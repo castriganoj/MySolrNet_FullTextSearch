@@ -17,6 +17,8 @@ namespace SearchLibrary
         public QueryResponse DoSearch(EhsQuery query)
         {
             FiltersFacets filtersFacets = new FiltersFacets();
+            Highlights highlights = new Highlights();
+           
 
             //Create an object to hold results
             SolrQueryResults<EHSDoc> solrResults;
@@ -25,18 +27,17 @@ namespace SearchLibrary
             //Echo back the original query 
             queryResponse.QueryText = query;          
 
-            //Get a connection
-            //Connection will be in web app startup, for now
-            //move initalized check into static getter check
-            //on SolrOperations field. 
-            bool initialized = Connection.Initialized;
+            //Create method for increased readibility.
+            //Move to some sort of application start or build eveuntally.
+            bool initialize = Connection.Initialized;
             ISolrOperations<EHSDoc> solr = Connection.SolrOperations;
             
             QueryOptions queryOptions = new QueryOptions
             {
                 Rows = query.Rows,
                 Facet = filtersFacets.BuildFacets(), 
-                FilterQueries = filtersFacets.BuildFilterQueries(query)
+                FilterQueries = filtersFacets.BuildFilterQueries(query), 
+                Highlight = highlights.BuildHighlightParameters()
             };
 
             //Execute the query

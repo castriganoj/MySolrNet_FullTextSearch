@@ -12,10 +12,7 @@
 
                             <div id="DataFound" class="row">
                                 <div class="col-md-12">
-                                    @foreach (var item in @searchResult.ValueAnswers)
-                                    {
-                                        @item
-                                    }
+                                   @Html.Raw(@searchResult.ValueAnswers)
                                 </div>
                             </div>
 

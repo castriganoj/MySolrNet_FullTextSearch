@@ -66,9 +66,8 @@ namespace Indexer.Workflows
                     FormType = sf.SingleOrDefault(colHead => colHead.Key == "vData_ReportType").Value,
                     OrgLocation = sf.SingleOrDefault(colHead => colHead.Key == "ParentPath").Value,
                     Status = sf.SingleOrDefault(colHead => colHead.Key == "vData_Status").Value,
-                    ValueAnswers = sf.Values.ToList(),
+                    ValueAnswers = string.Join(", ", sf.Values),
                     EditDate = null
-
                 };
 
                 formsList.Add(smartForm);

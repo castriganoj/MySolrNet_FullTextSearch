@@ -59,7 +59,7 @@ namespace Indexer
                     Description = audit.SingleOrDefault(colHead => colHead.Key == "sDescription").Value,
                     Status = audit.SingleOrDefault(coldHead => coldHead.Key == "sName").Value,
                     OrgLocation = audit.SingleOrDefault(colHead => colHead.Key == "sOrgPath").Value,
-                    ValueAnswers = audit.Values.ToList()
+                    ValueAnswers = string.Join(", ", audit.Values)
                 };
 
                 auditsList.Add(solrAudit);

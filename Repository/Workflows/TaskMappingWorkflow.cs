@@ -65,7 +65,7 @@ namespace Indexer.Workflows
                     CreateDate = createDate,
                     Creator = task.SingleOrDefault(colHead => colHead.Key == "sResponsiblePerson").Value,
                     Status = task.SingleOrDefault(colHead => colHead.Key == "sName").Value,
-                    ValueAnswers = task.Values.ToList()
+                    ValueAnswers = string.Join(", ", task.Values)
                 };
 
                 taskList.Add(EHSDoc);

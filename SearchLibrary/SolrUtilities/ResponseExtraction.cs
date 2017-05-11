@@ -27,7 +27,22 @@ namespace SearchLibrary.SolrUtilities
 
         internal void SetBody(QueryResponse queryResponse, SolrQueryResults<EHSDoc> solrResults)
         {
+   
             queryResponse.Results = solrResults;
+
+            foreach(EHSDoc doc in queryResponse.Results)
+            {
+                if (solrResults.Highlights.ContainsKey(doc.Id))
+                {
+                    HighlightedSnippets snippets = solrResults.Highlights[doc.Id];
+
+                    if (snippets.ContainsKey("answers"))
+                    {
+                        doc.ValueAnswers = snippets["answers"].FirstOrDefault();
+                    }
+
+                }
+            }
         }
 
         internal void SetFacets(QueryResponse queryResponse, SolrQueryResults<EHSDoc> solrResults)

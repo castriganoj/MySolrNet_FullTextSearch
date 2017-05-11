@@ -27,6 +27,10 @@ textarea {
     margin-top:15px;
 }
 
+.highlight{
+    background-color:greenyellow;
+}
+
 #imaginary_container{
     margin-top:20%; /* Don't copy this */
 }

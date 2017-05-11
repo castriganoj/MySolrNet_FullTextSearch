@@ -9,6 +9,9 @@ namespace SearchLibrary.Models.EHS
 {
     public class EHSDoc
     {
+        [SolrField("id")]
+        public string Id { get; set; }
+
         [SolrField("documentType")]
         public string DocumentType { get; set; }
 
@@ -28,7 +31,7 @@ namespace SearchLibrary.Models.EHS
         public List<string> Viewers { get; set; }
 
         [SolrField("answers")]
-        public List<string> ValueAnswers { get; set; }
+        public string ValueAnswers { get; set; }
      
         //sf
         [SolrField("formType")]

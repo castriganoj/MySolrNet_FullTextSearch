@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EHSSearch.cs" />
+    <Compile Include="SolrUtilities\Highlights.cs" />
     <Compile Include="Models\EHS\EHSDoc.cs" />
     <Compile Include="Models\Query\EhsQuery.cs" />
     <Compile Include="Models\Query\QueryResponse.cs" />

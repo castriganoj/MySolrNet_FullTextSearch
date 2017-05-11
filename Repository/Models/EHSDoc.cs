@@ -28,7 +28,7 @@ namespace Indexer.Models
         public List<string> Viewers { get; set; }
 
         [SolrField("answers")]
-        public List<string> ValueAnswers { get; set; }
+        public string ValueAnswers { get; set; }
      
         //sf
         [SolrField("formType")]
