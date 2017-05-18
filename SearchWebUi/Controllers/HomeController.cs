@@ -16,6 +16,8 @@ namespace SearchWebUi.Controllers
         {
             EhsQuery ehsQuery;
 
+            usersFirstSearch();
+         
             if (searchVM.EhsQuery == null)
             {
                 ehsQuery = new EhsQuery();
@@ -41,11 +43,20 @@ namespace SearchWebUi.Controllers
             searchVM.QueryResponse = result;
             searchVM.EhsQuery = new EhsQuery();
             searchVM.EhsQuery.QueryText = result.QueryText.QueryText;
-            searchVM.filters = BuildFilterCheckBoxes(result, searchVM.filters);
-            
 
+            searchVM.filters = BuildFilterCheckBoxes(result, searchVM.filters);
+
+           
             return View(searchVM);
         }
+
+        public ActionResult FirstSearch()
+        {
+            bool firstSearch = usersFirstSearch();
+            return Json(firstSearch);
+        }
+
+
 
         public ActionResult SearchPreview()
         {
@@ -61,32 +72,48 @@ namespace SearchWebUi.Controllers
                 var checkBox = new FilterCheckBox();
                 checkBox.FilterName = orgFacet.Key;
                 checkBox.Type = FilterType.OrgLocation;
-
+                if (orgFacet.Value > 0)
+                {
+                    checkBox.Selected = true;
+                }
                 filterCheckBoxes.Add(checkBox);
             }
 
-            foreach (var orgFacet in result.DocumentTypeFacet)
+
+            foreach (var docFacet in result.DocumentTypeFacet)
             {
                 var checkBox = new FilterCheckBox();
-                checkBox.FilterName = orgFacet.Key;
+                checkBox.FilterName = docFacet.Key;
                 checkBox.Type = FilterType.Document;
+                if (docFacet.Value > 0)
+                {
+                    checkBox.Selected = true;
+                }
                 filterCheckBoxes.Add(checkBox);
 
             }
 
-            foreach (var orgFacet in result.StatusTypeFacet)
+            foreach (var statusType in result.StatusTypeFacet)
             {
                 var checkBox = new FilterCheckBox();
-                checkBox.FilterName = orgFacet.Key;
+                checkBox.FilterName = statusType.Key;
                 checkBox.Type = FilterType.Status;
+                if (statusType.Value > 0)
+                {
+                    checkBox.Selected = true;
+                }
                 filterCheckBoxes.Add(checkBox);
-            }
 
-            foreach (var orgFacet in result.DateCreatedFacet)
+            }
+            foreach (var dateFacet in result.DateCreatedFacet)
             {
                 var checkBox = new FilterCheckBox();
-                checkBox.FilterName = orgFacet.Key;
+                checkBox.FilterName = dateFacet.Key;
                 checkBox.Type = FilterType.Date;
+                if (dateFacet.Value > 0)
+                {
+                    checkBox.Selected = true;
+                }
                 filterCheckBoxes.Add(checkBox);
             }
 
@@ -127,5 +154,15 @@ namespace SearchWebUi.Controllers
             return ehsQuery;
         }
 
+        private bool usersFirstSearch()
+        {
+            if(Session["searchNewb"] == null)
+            {
+                Session["searchNewb"] = true;
+                return true;
+            }
+
+            return false;
+        }
     }
 }

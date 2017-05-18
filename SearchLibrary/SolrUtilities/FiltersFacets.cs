@@ -37,14 +37,9 @@ namespace SearchLibrary.SolrUtilities
                 refinersStatus.Add(new SolrQueryByField("status", statusFilter));
             }
 
-            //ISolrOperations<Product> solr = ...
-            //var products = solr.Query(new SolrQueryByRange<decimal>("price", 100m, 250.50m)); // search for price between 100 and 250.50
 
             foreach (DateTime createYearFilter in query.DateFilter)
             {
-                //[2008-01-01T00:00:00Z TO 2008-12-31T23:59:59Z]
-                //string year = createYearFilter.Year.ToString();
-                //string dateForSolr = "[" + year + "-01-01T00:00:00Z TO " + year + "-12-31T23:59:59Z]";
                 
                 refinersCreateDate.Add(new SolrQueryByRange<DateTime?>("createDate", createYearFilter, createYearFilter.AddYears(+1).AddDays(-1)));
             }

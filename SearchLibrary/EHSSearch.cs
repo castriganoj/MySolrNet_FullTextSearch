@@ -37,7 +37,7 @@ namespace SearchLibrary
                 Rows = query.Rows,
                 Facet = filtersFacets.BuildFacets(), 
                 FilterQueries = filtersFacets.BuildFilterQueries(query), 
-                Highlight = highlights.BuildHighlightParameters()
+                Highlight = highlights.BuildHighlightParameters(),
             };
 
             //Execute the query

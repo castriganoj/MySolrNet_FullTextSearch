@@ -9,7 +9,7 @@ namespace SearchLibrary.Models.Query
     {
         public EhsQuery()
         {
-            Rows = 20;
+            Rows = 10;
             Start = 0;
             ProductTypeFilter = new List<string>();
             StatusFilter = new List<string>();

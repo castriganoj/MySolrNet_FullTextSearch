@@ -13,7 +13,7 @@ namespace SearchLibrary.SolrUtilities
     internal static class Connection
     {
 
-        private static string coreUrl = "http://localhost:8983/solr/EHS";
+        private static string coreUrl = "http://localhost.fiddler:8983/solr/EHS";
 
         public static ISolrOperations<EHSDoc> SolrOperations;
 

@@ -22,6 +22,30 @@ select,
 textarea {
     max-width: 280px;
 }
+.clearFilters{
+    font-size:10px;
+}
+.hoverCursor{
+    cursor:pointer;
+}
+
+a:hover, a:focus{
+    cursor:pointer;
+}
+
+.moreDataSpace{
+    margin-top:1%;
+}
+
+.panel-heading h3:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading h3.collapsed:after {
+    content:"\e080";
+}
 
 .searchRow{
     margin-top:15px;

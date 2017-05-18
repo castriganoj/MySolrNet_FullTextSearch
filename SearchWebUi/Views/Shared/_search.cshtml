@@ -5,39 +5,39 @@
                     <div class="row">
                         <div class="col-md-11 searchResultCell">
                             <div id="CreatedDate" class="row faded">
-                                <div class="col-md-12">
-                                    @searchResult.CreateDate
-                                </div>
-                            </div>
+    <div class="col-md-12">
+        <a>@searchResult.OrgLocation</a>
+        <p>@searchResult.CreateDate.ToString("MM/dd/yyyy")</p>
+    </div>
+                        </div>
 
-                            <div id="DataFound" class="row">
-                                <div class="col-md-12">
-                                   @Html.Raw(@searchResult.ValueAnswers)
+                                <div id="DataFound" class="row hoverCursor" data-toggle="collapse" data-target="@("#moreData" + @searchResult.Id)">
+                                    <div class="col-md-12">
+                                        @Html.Raw(@searchResult.ValueAnswers)
+                                    </div>
                                 </div>
-                            </div>
 
                             <div id="Icons" class="row faded">
                                 <div id="type" class="col-md-4">
                                     <span class="glyphicon glyphicon-tag"></span>
                                     @searchResult.DocumentType
                                 </div>
-                                <div id="lastModified" class="col-md-4">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    @searchResult.EditDate
-                                </div>
-                                <div id="user" class="col-md-4">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    @searchResult.Creator
-                                </div>
+                                @*<div id="lastModified" class="col-md-4">
+                                <span class="glyphicon glyphicon-search"></span>
+                                @searchResult.EditDate
+                                </div>*@
+                                @*<div id="user" class="col-md-4">
+                                <span class="glyphicon glyphicon-user"></span>
+                                @searchResult.Creator
+                                </div>*@
                             </div>
-
-                            <div id="MoreData" class="row" style="display:none;">
-                                <div class="col-md-4">
-                                    <p>Description: @searchResult.Description</p>
-                                    <p>Domain: @searchResult.Domain</p>
-                                    <p>Status: @searchResult.Status</p>
-                                    <p>Name: @searchResult.Name</p>
-                                </div>
+                            <div id="@("moreData"+@searchResult.Id)" class="row collapse moreDataSpace" >
+                                <div class=" col-md-12">
+                                <p>Description: @searchResult.Description</p>
+                                <p>Domain: @searchResult.Domain</p>
+                                <p>Status: @searchResult.Status</p>
+                                <p>Name: @searchResult.Name</p>
+                            </div>
                             </div>
 
                         </div>

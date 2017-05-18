@@ -24,7 +24,7 @@ namespace Indexer.Workflows
 
             foreach (var sf in smartForms)
             {
-                
+
                 if ((!String.IsNullOrWhiteSpace(sf.FormType) && !sf.FormType.Contains("GHG")))
                 {
                     solrAuditOperations.Add(sf);

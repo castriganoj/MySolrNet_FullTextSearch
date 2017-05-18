@@ -5,7 +5,7 @@
 @*search area*@
 
 <div class="container">
-    @using (Html.BeginForm("index", "home", FormMethod.Get, new { @class = "" }))
+    @using (Html.BeginForm("index", "home", FormMethod.Get, new { @class = "", @id = "searchForm" }))
     {
         <div class="row searchRow">
             <div class="col-md-12">
@@ -41,97 +41,127 @@
 
 
         <div class="row">
-            <div class="col-md-4">
-                <div id="documentTypeFacet">
+            <div id="filters" class="col-md-4">
+                <div id="documentTypeFacet" class="parentFilter">
+                  @*  @Html.CheckBox(" ", new { @id = "parentDocBox", @class = "parentBox" })*@
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Document Type</h3>
+                            <a data-toggle="collapse" data-target="#collapseOne">
+                                <h3 class="panel-title">
+                                    Document Type
+                                </h3>
+                            </a>
                         </div>
-                        <div class="panel-body">
-                            @for (int i = 0; i < Model.filters.Count(); i++)
-                            {
-                                if (@Model.filters[i].Type == FilterType.Document)
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                @for (int i = 0; i < Model.filters.Count(); i++)
                                 {
-                                    <div class="Fieldset">
-                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
-                                        @Html.HiddenFor(m => m.filters[i].FilterName)
-                                        @Html.HiddenFor(m => m.filters[i].Type)
-                                        @Html.DisplayTextFor(m => m.filters[i].FilterName)
-                                        <span>(@Model.QueryResponse.DocumentTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
-                                    </div>
+                                    if (@Model.filters[i].Type == FilterType.Document)
+                                    {
+                                        <div class="Fieldset">
+                                            @Html.CheckBoxFor(m => m.filters[i].Selected, new { @class = "childDocBox" })
+                                            @Html.HiddenFor(m => m.filters[i].FilterName)
+                                            @Html.HiddenFor(m => m.filters[i].Type)
+                                            @Html.DisplayTextFor(m => m.filters[i].FilterName)
+                                            <span>(@Model.QueryResponse.DocumentTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                        </div>
+                                    }
                                 }
-                            }
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="statusFacet">
+                <div id="statusFacet" class="parentFilter">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Status</h3>
+                            <a data-toggle="collapse" data-target="#collapseTwo">
+                                <h3 class="panel-title">
+                                    @*      @Html.CheckBox(" ", new { @class = "parentBox" })*@
+                                    Status
+                                </h3>
+                            </a>
                         </div>
-                        <div class="panel-body">
-                            @for (int i = 0; i < Model.filters.Count(); i++)
-                            {
-                                if (Model.filters[i].Type == FilterType.Status)
+                        <div id="collapseTwo" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                @for (int i = 0; i < Model.filters.Count(); i++)
                                 {
-                                    <div class="Fieldset">
-                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
-                                        @Html.HiddenFor(m => m.filters[i].FilterName)
-                                        @Html.HiddenFor(m => m.filters[i].Type)
-                                        @Html.Label(Model.filters[i].FilterName)
-                                        <span>(@Model.QueryResponse.StatusTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
-                                    </div>
+                                    if (Model.filters[i].Type == FilterType.Status)
+                                    {
+                                        <div class="Fieldset">
+                                            @Html.CheckBoxFor(m => m.filters[i].Selected)
+                                            @Html.HiddenFor(m => m.filters[i].FilterName)
+                                            @Html.HiddenFor(m => m.filters[i].Type)
+                                            @Html.Label(Model.filters[i].FilterName)
+                                            <span>(@Model.QueryResponse.StatusTypeFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                        </div>
+                                    }
                                 }
-                            }
 
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="dateFacet">
+                <div id="dateFacet" class="parentFilter">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Dates</h3>
+                            @*    @Html.CheckBox(" ", new { @class = "parentBox" })*@
+                            <a data-toggle="collapse" data-target="#collapseThree">
+                                <h3 class="panel-title">
+                                    Dates
+                                </h3>
+                            </a>
+
                         </div>
-                        <div class="panel-body">
-                            @for (int i = 0; i < Model.filters.Count(); i++)
-                            {
-                                if (Model.filters[i].Type == FilterType.Date)
+                        <div id="collapseThree" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                @for (int i = 0; i < Model.filters.Count(); i++)
                                 {
-                                    <div class="Fieldset">
-                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
-                                        @Html.HiddenFor(m => m.filters[i].FilterName)
-                                        @Html.HiddenFor(m => m.filters[i].Type)
-                                        @Html.Label(Model.filters[i].FilterName)
-                                        <span>(@Model.QueryResponse.DateCreatedFacet.SingleOrDefault(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
-                                    </div>
+                                    if (Model.filters[i].Type == FilterType.Date)
+                                    {
+                                        <div class="Fieldset">
+                                            @Html.CheckBoxFor(m => m.filters[i].Selected)
+                                            @Html.HiddenFor(m => m.filters[i].FilterName)
+                                            @Html.HiddenFor(m => m.filters[i].Type)
+                                            @Html.Label(Model.filters[i].FilterName)
+                                            <span>(@Model.QueryResponse.DateCreatedFacet.SingleOrDefault(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                        </div>
+                                    }
                                 }
-                            }
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="orgLocationFacet">
+                <div id="orgLocationFacet" class="parentFilter">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Org Path</h3>
+                            <a data-toggle="collapse" data-target="#collapseFour">
+                                <h3 class="panel-title">
+                                    @*           @Html.CheckBox(" ", new { @class = "parentBox" })*@
+                                    Org Path
+                                </h3>
+                            </a>
                         </div>
-                        <div class="panel-body">
-                            @for (int i = 0; i < Model.filters.Count(); i++)
-                            {
-                                if (Model.filters[i].Type == FilterType.OrgLocation)
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                @for (int i = 0; i < Model.filters.Count(); i++)
                                 {
-                                    <div class="Fieldset">
-                                        @Html.CheckBoxFor(m => m.filters[i].Selected)
-                                        @Html.HiddenFor(m => m.filters[i].FilterName)
-                                        @Html.HiddenFor(m => m.filters[i].Type)
-                                        @Html.Label(Model.filters[i].FilterName)
-                                        <span>(@Model.QueryResponse.OrgLocationFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
-                                    </div>
+                                    if (Model.filters[i].Type == FilterType.OrgLocation)
+                                    {
+                                        <div class="Fieldset">
+                                            @Html.CheckBoxFor(m => m.filters[i].Selected, new { @class = "checkBox" })
+                                            @Html.HiddenFor(m => m.filters[i].FilterName)
+                                            @Html.HiddenFor(m => m.filters[i].Type)
+                                            @Html.Label(Model.filters[i].FilterName)
+                                            <span>(@Model.QueryResponse.OrgLocationFacet.Single(facet => facet.Key == Model.filters[i].FilterName).Value)</span>
+                                        </div>
+                                    }
                                 }
-                            }
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +169,7 @@
             </div>
 
 
-            <div class="col-md-8">
+            <div id="results" class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
                         @if (Model != null)
@@ -153,9 +183,10 @@
     }
 
 </div>
+
 @section Scripts
 {
-    <script src="~/Scripts/"></script>
+    <script src="@Url.Content("~/Scripts/search.js")"></script></script>
 }
 
 
