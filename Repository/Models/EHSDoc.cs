@@ -9,6 +9,9 @@ namespace Indexer.Models
 {
     public class EHSDoc
     {
+        [SolrField("EhsId")]
+        public int EhsId { get; set; }
+
         [SolrField("documentType")]
         public string DocumentType { get; set; }
 
@@ -26,6 +29,9 @@ namespace Indexer.Models
 
         [SolrField("viewers")]
         public List<string> Viewers { get; set; }
+
+        [SolrField("status")]
+        public string Status { get; set; }
 
         [SolrField("answers")]
         public string ValueAnswers { get; set; }
@@ -46,9 +52,7 @@ namespace Indexer.Models
         [SolrField("domains")]
         public string Domain { get; set; }
 
-        //audit
-        [SolrField("status")]
-        public string Status { get; set; }
+       
 
     }
 }
